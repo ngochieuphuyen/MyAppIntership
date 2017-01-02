@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Day"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Day" />
+        <item
+            android:id="@+id/nav_Week"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Week" />
+        <item
+            android:id="@+id/nav_Month"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Month" />
+        <item
+            android:id="@+id/nav_TwoWeek"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="2 Week" />
+    </group>
+
+    <item android:title="Holiday">
+        <menu>
+            <item
+                android:id="@+id/nav_VietNam"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Viet Nam" />
+            <item
+                android:id="@+id/nav_English"
+                android:icon="@drawable/ic_menu_send"
+                android:title="English" />
+        </menu>
+    </item>
+
+</menu>
