@@ -14,10 +14,7 @@
             android:id="@+id/nav_Month"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Month" />
-        <item
-            android:id="@+id/nav_TwoWeek"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="2 Week" />
+
     </group>
 
     <item android:title="Holiday">

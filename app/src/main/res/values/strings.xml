@@ -14,4 +14,11 @@
     <string name="TimeEvent">Time</string>
     <string name="AddressEvent">Address of event</string>
     <string name="DescribeHoliday">Describe</string>
+    <string name="Sunday">Sun</string>
+    <string name="Monday">Mon</string>
+    <string name="Tuesday">Tue</string>
+    <string name="Wednesday">Wed</string>
+    <string name="Thuday">Thu</string>
+    <string name="Friday">Fri</string>
+    <string name="Saturday">Sat</string>
 </resources>

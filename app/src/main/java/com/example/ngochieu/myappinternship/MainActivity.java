@@ -60,12 +60,12 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment fragment= new FragmentDay();
-        transaction.add(R.id.content_main,fragment);
+        FragmentMonth fragmentMonth = new FragmentMonth();
+        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.Frame1,fragmentMonth);
         transaction.commit();
+
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -115,26 +115,26 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(MainActivity.this,"show fragment",Toast.LENGTH_LONG);
 
         switch (item.getItemId()){
-            case R.id.nav_Day:
-                fragment = new FragmentDay();
-                transaction.replace(R.id.content_main,fragment);
-                transaction.commit();
-                break;
-            case R.id.nav_Week:
-                fragment = new FragmentWeek();
-                transaction.replace(R.id.content_main,fragment);
-                transaction.commit();
-                break;
-            case R.id.nav_Month:
-                fragment = new FragmentMonth();
-                transaction.replace(R.id.content_main,fragment);
-                transaction.commit();
-                break;
-            case R.id.nav_TwoWeek:
-                fragment = new FragmentTwoWeek();
-                transaction.replace(R.id.content_main,fragment);
-                transaction.commit();
-                break;
+//            case R.id.nav_Day:
+//                fragment = new FragmentDay();
+//                transaction.replace(R.id.content_main,fragment);
+//                transaction.commit();
+//                break;
+//            case R.id.nav_Week:
+//                fragment = new FragmentWeek();
+//                transaction.replace(R.id.content_main,fragment);
+//                transaction.commit();
+//                break;
+//            case R.id.nav_Month:
+//                fragment = new FragmentMonth();
+//                transaction.replace(R.id.content_main,fragment);
+//                transaction.commit();
+//                break;
+//            case R.id.nav_TwoWeek:
+//                fragment = new FragmentTwoWeek();
+//                transaction.replace(R.id.content_main,fragment);
+//                transaction.commit();
+//                break;
             case R.id.nav_VietNam:
 
                 break;
