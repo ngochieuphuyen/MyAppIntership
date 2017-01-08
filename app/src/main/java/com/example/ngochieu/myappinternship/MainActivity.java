@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_Day:
                 fragment = new FragmentDay();
                 transaction.replace(R.id.Frame1,fragment);
+                transaction.replace(R.id.FrameCalender, new FragmentCalenderView());
                 transaction.commit();
                 break;
 //            case R.id.nav_Week:
@@ -130,11 +131,7 @@ public class MainActivity extends AppCompatActivity
                 transaction.replace(R.id.Frame1,fragment);
                 transaction.commit();
                 break;
-//            case R.id.nav_TwoWeek:
-//                fragment = new FragmentTwoWeek();
-//                transaction.replace(R.id.content_main,fragment);
-//                transaction.commit();
-//                break;
+
             case R.id.nav_VietNam:
 
                 break;

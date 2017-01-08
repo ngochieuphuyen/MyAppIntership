@@ -21,4 +21,9 @@
     <string name="Thuday">Thu</string>
     <string name="Friday">Fri</string>
     <string name="Saturday">Sat</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Done">Done</string>
+    <string name="AllDay">All day</string>
+    <string name="Guests">Guests</string>
+    <string name="Describe">Describe</string>
 </resources>

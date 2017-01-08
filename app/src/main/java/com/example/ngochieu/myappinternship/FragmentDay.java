@@ -4,13 +4,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -40,6 +45,18 @@ public class FragmentDay extends Fragment{
 
         AdapterFragmentDay adapter = new AdapterFragmentDay(context,data);
         recyclerView.setAdapter(adapter);
+
+        // set calender
+//        FragmentCalenderView fragmentCalenderView = new FragmentCalenderView();
+//        FragmentManager manager = getFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.FrameCalenderView, fragmentCalenderView);
+//        transaction.commit();
+
+
+
+//            CalendarView calendar = (CalendarView) view.findViewById(R.id.calender);
+//            calendar.setEnabled(true);
 
         return view;
     }
