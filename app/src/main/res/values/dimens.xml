@@ -9,4 +9,5 @@
     <dimen name="general">10dp</dimen>
     <dimen name="largeText">20sp</dimen>
     <dimen name="mediumText">16sp</dimen>
+    <dimen name="maxText">30sp</dimen>
 </resources>
