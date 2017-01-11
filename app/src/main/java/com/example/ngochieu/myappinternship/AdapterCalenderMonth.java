@@ -33,8 +33,8 @@ public class AdapterCalenderMonth extends RecyclerView.Adapter<AdapterCalenderMo
     @Override
     public void onBindViewHolder(HolderMyDate holder, int position) {
         MyDate myDate = data.get(position);
-        holder.txtDayOfSun.setText(myDate.dayOfSun);
-        holder.txtDayOfmoon.setText(myDate.dayOfMoon);
+        holder.txtDayOfSun.setText(String.valueOf(myDate.getDay()));
+        holder.txtDayOfmoon.setText(String.valueOf(myDate.getLunarDay()));
 
 
     }

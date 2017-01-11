@@ -34,7 +34,7 @@ public class FragmentMonth extends Fragment {
 
         List<MyDate> data = new ArrayList<>();
         for (int i = 0; i <31 ; i++) {
-            data.add(new MyDate(i,String.valueOf(i),String.valueOf(i),String.valueOf(i),i,i));
+            data.add(new MyDate(i,i,i,i,i,String.valueOf(i)));
         }
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list_month);

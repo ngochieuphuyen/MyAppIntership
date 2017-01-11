@@ -34,7 +34,7 @@ public class FragmentCalenderView extends Fragment {
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.list_calender_view);
         List<MyDate> dataCal = new ArrayList<>();
         for (int i = 0; i <31 ; i++) {
-            dataCal.add(new MyDate(i,String.valueOf(i),String.valueOf(i),String.valueOf(i),i,i));
+            dataCal.add(new MyDate(i,i,i));
         }
 
         rv.setLayoutManager(new GridLayoutManager(context,7));

@@ -31,9 +31,9 @@ public class AdapterFragmentDay extends RecyclerView.Adapter<AdapterFragmentDay.
     @Override
     public void onBindViewHolder(HolderMyEvent holder, int position) {
         MyEvent myEvent = data.get(position);
-        holder.txtStartAndEnd.setText(myEvent.start+" : "+myEvent.end);
-        holder.txtStart.setText(myEvent.start);
-        holder.txtNameEvent.setText(myEvent.name);
+        holder.txtStartAndEnd.setText(myEvent.getStartTime()+" : "+myEvent.getEndTime());
+        holder.txtStart.setText(myEvent.getStartTime());
+        holder.txtNameEvent.setText(myEvent.getNameEvent());
     }
 
     @Override

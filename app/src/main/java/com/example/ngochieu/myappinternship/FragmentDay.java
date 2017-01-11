@@ -39,8 +39,8 @@ public class FragmentDay extends Fragment{
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         List<MyEvent> data = new ArrayList<>();
-        for (int i = 0; i <10 ; i++) {
-            data.add(new MyEvent(i,new MyDate(1,String.valueOf(i),"Sun",1,2017),"hoc "+i,"7:00 AM","8:30 AM"));
+        for (int i = 0; i <30 ; i++) {
+            data.add(new MyEvent(i,"hoc "+i,"7:00 AM","8:30 AM",new MyDate(1,i,"Sun",1,2017),new MyDate(1,i,"Sun",1,2017)));
         }
 
         AdapterFragmentDay adapter = new AdapterFragmentDay(context,data);
