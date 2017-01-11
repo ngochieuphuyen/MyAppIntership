@@ -1,4 +1,4 @@
-package com.example.ngochieu.myappinternship;
+package com.example.ngochieu.myappinternship.Support;
 
 import android.util.Log;
 

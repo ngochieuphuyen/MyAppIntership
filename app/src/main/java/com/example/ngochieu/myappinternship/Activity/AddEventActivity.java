@@ -1,8 +1,10 @@
-package com.example.ngochieu.myappinternship;
+package com.example.ngochieu.myappinternship.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.ngochieu.myappinternship.R;
 
 /**
  * Created by NgocHieu on 1/8/2017.

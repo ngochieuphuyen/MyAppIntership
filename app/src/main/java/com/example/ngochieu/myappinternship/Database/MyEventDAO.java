@@ -1,9 +1,11 @@
-package com.example.ngochieu.myappinternship;
+package com.example.ngochieu.myappinternship.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.ngochieu.myappinternship.Support.MyEvent;
 
 import java.util.ArrayList;
 import java.util.List;

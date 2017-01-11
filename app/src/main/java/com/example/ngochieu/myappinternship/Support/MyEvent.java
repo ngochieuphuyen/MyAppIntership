@@ -1,4 +1,4 @@
-package com.example.ngochieu.myappinternship;
+package com.example.ngochieu.myappinternship.Support;
 
 /**
  * Created by NgocHieu on 1/8/2017.

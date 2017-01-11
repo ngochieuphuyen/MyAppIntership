@@ -1,4 +1,4 @@
-package com.example.ngochieu.myappinternship;
+package com.example.ngochieu.myappinternship.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.ngochieu.myappinternship.Support.MyDate;
+import com.example.ngochieu.myappinternship.R;
 
 import java.util.List;
 

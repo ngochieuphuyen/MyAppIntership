@@ -26,4 +26,8 @@
     <string name="AllDay">All day</string>
     <string name="Guests">Guests</string>
     <string name="Describe">Describe</string>
+    <string name="StartDate">Start date</string>
+    <string name="StartTime">Start time</string>
+    <string name="EndDate">Ens date</string>
+    <string name="EndTime">End time</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.ngochieu.myappinternship;
+package com.example.ngochieu.myappinternship.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
