@@ -18,7 +18,11 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TimePicker;
 
+import com.example.ngochieu.myappinternship.Database.MyDateDAO;
+import com.example.ngochieu.myappinternship.Database.MyEventDAO;
 import com.example.ngochieu.myappinternship.R;
+import com.example.ngochieu.myappinternship.Support.MyDate;
+import com.example.ngochieu.myappinternship.Support.MyEvent;
 
 /**
  * Created by NgocHieu on 1/8/2017.
@@ -142,7 +146,49 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
                 timePickerDialogEnd.show();
                 break;
             case R.id.btnDone:
-
+                MyEvent myEvent = new MyEvent();
+                MyDateDAO myDateDAO = new MyDateDAO(AddEventActivity.this);
+                MyEventDAO myEventDAO = new MyEventDAO(AddEventActivity.this);
+                if (editNameEvent.getText().toString() != null){
+                    myEvent.setNameEvent(editNameEvent.getText().toString());
+                }
+                if (editAddress.getText().toString() != null){
+                    myEvent.setAddress(editAddress.getText().toString());
+                }
+                if (editStartDate.getText().toString() != null){
+                    String mString = editStartDate.getText().toString();
+                    String[] StringDate = mString.split("/");
+                    int day = Integer.parseInt(StringDate[0]);
+                    int month = Integer.parseInt(StringDate[1]);
+                    int year = Integer.parseInt(StringDate[2]);
+                    int id_date = myDateDAO.getIdDate(day,month,year);
+                    MyDate myDate = myDateDAO.getMyDate(id_date);
+                    myEvent.setStartDate(myDate);
+                }
+                if (editEndDate.getText().toString() != null){
+                    String mString = editEndDate.getText().toString();
+                    String[] StringDate = mString.split("/");
+                    int day = Integer.parseInt(StringDate[0]);
+                    int month = Integer.parseInt(StringDate[1]);
+                    int year = Integer.parseInt(StringDate[2]);
+                    int id_date = myDateDAO.getIdDate(day,month,year);
+                    MyDate myDate = myDateDAO.getMyDate(id_date);
+                    myEvent.setEndDate(myDate);
+                }
+                if (editStartTime.getText().toString() != null){
+                    myEvent.setStartTime(editStartTime.getText().toString());
+                }
+                if (editEndTime.getText().toString() != null){
+                    myEvent.setEndTime(editEndTime.getText().toString());
+                }
+                if (editGuests.getText().toString() != null){
+                    myEvent.setGuest(editGuests.getText().toString());
+                }
+                if (editDescribe.getText().toString() != null){
+                    myEvent.setDescription(editDescribe.getText().toString());
+                }
+                myEventDAO.AddEvent(myEvent);
+                finish();
                 break;
             case R.id.btnCancel:
                 finish();

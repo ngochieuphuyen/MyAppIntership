@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity
 //        MyDateDAO myDateDAO = new MyDateDAO(this);
 //        int idDate = myDateDAO.getIdDate(10,12,2016);
 //        MyDate myDate = new MyDate(idDate,10,"Sat",12,2016);
-//        MyEventDAO myEventDAO = new MyEventDAO(this);
+        MyEventDAO myEventDAO = new MyEventDAO(this);
 //        myEventDAO.AddEvent(new MyEvent("test","bk","7:00","7:30",myDate,myDate));
 
-//        ArrayList<MyEvent> listEvent = (ArrayList<MyEvent>) myEventDAO.getAllEvent();
-//        for (int i = 0; i < listEvent.size(); i++) {
-//            Log.d(TAG, "onCreate: "+listEvent.get(i).getId()+" : "+listEvent.get(i).getNameEvent());
-//        }
+        ArrayList<MyEvent> listEvent = (ArrayList<MyEvent>) myEventDAO.getAllEvent();
+        for (int i = 0; i < listEvent.size(); i++) {
+            Log.d(TAG, "onCreate: "+listEvent.get(i).getId()+" : "+listEvent.get(i).getNameEvent());
+        }
 
 //        dao.addMyDate(mydate);
 //        ArrayList<MyDate> listDay = (ArrayList<MyDate>) dao.getAllMyDate();
