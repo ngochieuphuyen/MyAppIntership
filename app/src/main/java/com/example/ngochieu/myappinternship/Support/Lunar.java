@@ -2,6 +2,8 @@ package com.example.ngochieu.myappinternship.Support;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import static java.lang.Math.sin;
 
 /**
@@ -110,7 +112,7 @@ public class Lunar {
         } while (arc != last && i < 14);
         return i - 1;
     }
-    public int convertSolar2Lunar(int intNgay, int intThang, int intNam){
+    public ArrayList convertSolar2Lunar(int intNgay, int intThang, int intNam){
         double dayNumber, monthStart, a11, b11, lunarDay, lunarMonth, lunarYear;
 //double lunarLeap;
         int k, diff;
@@ -164,7 +166,9 @@ public class Lunar {
         int Thang = Integer.parseInt(lunarMonthStr.substring(0,lunarMonthStr.indexOf(".")));
         int Nam = Integer.parseInt(lunarYearStr.substring(0,lunarYearStr.indexOf(".")));
         Log.d("123", "convertSolar2Lunar: "+Ngay+"/"+Thang+"/"+Nam);
-        return 1;
+        ArrayList list = new ArrayList<>();
+        list.add(Ngay);list.add(Thang);list.add(Nam);
+        return list;
     }
 
 }

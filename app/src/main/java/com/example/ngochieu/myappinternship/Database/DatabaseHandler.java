@@ -28,7 +28,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         static final String KEY_MONTH = "month";
         static final String KEY_YEAR = "year";
         static final String KEY_LUNARDAY = "lunar_day";
-        static final String KEY_LUNARMONTH = "lunar_year";
+        static final String KEY_LUNARMONTH = "lunar_month";
         static final String KEY_LUNARYEAR = "lunar_yaer";
     }
 
@@ -45,18 +45,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String CREATE_MYDATES_TABLE = "CREATE TABLE " + TABLE_MYDATES + "("
             + MyDateColumn._ID + " INTEGER PRIMARY KEY," + MyDateColumn.KEY_DAY + " INTEGER,"
-            + MyDateColumn.KEY_DAYOFWEEK + "TEXT,"  + MyDateColumn.KEY_MONTH + "INTEGER,"
-            + MyDateColumn.KEY_YEAR + "INTEGER,"  + MyDateColumn.KEY_LUNARDAY + "INTEGER,"
-            + MyDateColumn.KEY_LUNARMONTH + "INTEGER,"
+            + MyDateColumn.KEY_DAYOFWEEK + " TEXT,"  + MyDateColumn.KEY_MONTH + " INTEGER,"
+            + MyDateColumn.KEY_YEAR + " INTEGER,"  + MyDateColumn.KEY_LUNARDAY + " INTEGER,"
+            + MyDateColumn.KEY_LUNARMONTH + " INTEGER,"
             + MyDateColumn.KEY_LUNARYEAR + " INTEGER" + ")";
     private static final String DROP_MYDATES_TABLE = "DROP TABLE IF EXISTS " + TABLE_MYDATES;
 
 
     private static final String CREATE_EVENTS_TABLE = "CREATE TABLE " + TABLE_EVENTS + "("
             + EventColumn._ID + " INTEGER PRIMARY KEY," + EventColumn.KEY_NAME + " TEXT,"
-            + EventColumn.KEY_ADDRESS + "TEXT,"  + EventColumn.KEY_STARTTIME + "TEXT,"
-            + EventColumn.KEY_ENDTIME + "TEXT,"  + EventColumn.KEY_STARTDATE + "INTEGER,"
-            + EventColumn.KEY_ENDDATE + "INTEGER,"  + EventColumn.KEY_GUEST + "TEXT,"
+            + EventColumn.KEY_ADDRESS + " TEXT,"  + EventColumn.KEY_STARTTIME + " TEXT,"
+            + EventColumn.KEY_ENDTIME + " TEXT,"  + EventColumn.KEY_STARTDATE + " INTEGER,"
+            + EventColumn.KEY_ENDDATE + " INTEGER,"  + EventColumn.KEY_GUEST + " TEXT,"
             + EventColumn.KEY_DESCRIPTION + " TEXT" + ")";
     private static final String DROP_EVENTS_TABLE = "DROP TABLE IF EXISTS " + TABLE_EVENTS;
 

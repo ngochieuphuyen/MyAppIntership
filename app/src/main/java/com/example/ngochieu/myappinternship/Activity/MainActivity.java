@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,18 +18,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.ngochieu.myappinternship.Database.MyDateDAO;
+import com.example.ngochieu.myappinternship.Database.MyEventDAO;
 import com.example.ngochieu.myappinternship.Fragment.FragmentCalenderView;
 import com.example.ngochieu.myappinternship.Fragment.FragmentDay;
 import com.example.ngochieu.myappinternship.Fragment.FragmentMonth;
 import com.example.ngochieu.myappinternship.R;
+import com.example.ngochieu.myappinternship.Support.MyDate;
+import com.example.ngochieu.myappinternship.Support.MyEvent;
+import com.example.ngochieu.myappinternship.Support.Support;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private GoogleApiClient client;
 
     @Override
@@ -37,6 +46,26 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        Support.addMonth(12,2016,MainActivity.this);
+//        MyDate mydate = new MyDate(12,"Thu",1,2017);
+
+//        MyDateDAO myDateDAO = new MyDateDAO(this);
+//        int idDate = myDateDAO.getIdDate(10,12,2016);
+//        MyDate myDate = new MyDate(idDate,10,"Sat",12,2016);
+//        MyEventDAO myEventDAO = new MyEventDAO(this);
+//        myEventDAO.AddEvent(new MyEvent("test","bk","7:00","7:30",myDate,myDate));
+
+//        ArrayList<MyEvent> listEvent = (ArrayList<MyEvent>) myEventDAO.getAllEvent();
+//        for (int i = 0; i < listEvent.size(); i++) {
+//            Log.d(TAG, "onCreate: "+listEvent.get(i).getId()+" : "+listEvent.get(i).getNameEvent());
+//        }
+
+//        dao.addMyDate(mydate);
+//        ArrayList<MyDate> listDay = (ArrayList<MyDate>) dao.getAllMyDate();
+//        for (int i = 0; i < listDay.size(); i++) {
+//            Log.d(TAG, "onCreate: "+listDay.get(i).getDay()+"/"+listDay.get(i).getMonth());
+//        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

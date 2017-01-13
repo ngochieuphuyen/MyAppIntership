@@ -4,11 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.ngochieu.myappinternship.Support.MyDate;
+import com.example.ngochieu.myappinternship.Support.MyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.ngochieu.myappinternship.Database.DatabaseHandler.TABLE_MYDATES;
 
 /**
  * Created by NgocHieu on 1/12/2017.
@@ -18,9 +22,9 @@ public class MyDateDAO {
     Context context;
     DatabaseHandler databaseHandler;
 
-    public MyDateDAO(Context context, DatabaseHandler databaseHandler) {
+    public MyDateDAO(Context context) {
         this.context = context;
-        this.databaseHandler = databaseHandler;
+        databaseHandler = new DatabaseHandler(context);
     }
 
     public void addMyDate(MyDate myDate){
@@ -33,13 +37,12 @@ public class MyDateDAO {
         values.put(DatabaseHandler.MyDateColumn.KEY_LUNARDAY,myDate.getLunarDay());
         values.put(DatabaseHandler.MyDateColumn.KEY_LUNARMONTH,myDate.getLunarMonth());
         values.put(DatabaseHandler.MyDateColumn.KEY_LUNARYEAR,myDate.getLunarYear());
-
-        db.insert(DatabaseHandler.TABLE_MYDATES, null, values);
+        db.insert(TABLE_MYDATES, null, values);
         db.close();
     }
     public MyDate getMyDate(int id){
         SQLiteDatabase db = databaseHandler.getWritableDatabase();
-        Cursor cursor = db.query(DatabaseHandler.TABLE_MYDATES, new String[] { DatabaseHandler.MyDateColumn._ID,
+        Cursor cursor = db.query(TABLE_MYDATES, new String[] { DatabaseHandler.MyDateColumn._ID,
                         DatabaseHandler.MyDateColumn.KEY_DAY, DatabaseHandler.MyDateColumn.KEY_DAYOFWEEK,
                         DatabaseHandler.MyDateColumn.KEY_MONTH,DatabaseHandler.MyDateColumn.KEY_YEAR,
                         DatabaseHandler.MyDateColumn.KEY_LUNARDAY,DatabaseHandler.MyDateColumn.KEY_LUNARMONTH,
@@ -57,7 +60,7 @@ public class MyDateDAO {
     public List<MyDate> getAllMyDate(){
         List<MyDate> listMyDate = new ArrayList<>();
         SQLiteDatabase db = databaseHandler.getWritableDatabase();
-        String sql =" select * form "+DatabaseHandler.TABLE_MYDATES;
+        String sql ="SELECT  * FROM "+ TABLE_MYDATES;
         Cursor cursor = db.rawQuery(sql,null);
 
         if (cursor.moveToFirst()) {
@@ -81,7 +84,7 @@ public class MyDateDAO {
         return listMyDate;
     }
     public int getMyDatesCount() {
-        String countQuery = "SELECT  * FROM " + DatabaseHandler.TABLE_MYDATES;
+        String countQuery = "SELECT  * FROM " + TABLE_MYDATES;
         SQLiteDatabase db = databaseHandler.getWritableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
@@ -102,21 +105,21 @@ public class MyDateDAO {
         values.put(DatabaseHandler.MyDateColumn.KEY_LUNARYEAR, myDate.getLunarYear());
 
         // updating row
-        return db.update(DatabaseHandler.TABLE_MYDATES, values, DatabaseHandler.MyDateColumn._ID + " = ?",
+        return db.update(TABLE_MYDATES, values, DatabaseHandler.MyDateColumn._ID + " = ?",
                 new String[] { String.valueOf(myDate.getId()) });
     }
     public void deleteMyDate(MyDate myDate) {
         SQLiteDatabase db = databaseHandler.getWritableDatabase();
-        db.delete(DatabaseHandler.TABLE_MYDATES, DatabaseHandler.MyDateColumn._ID + " = ?",
+        db.delete(TABLE_MYDATES, DatabaseHandler.MyDateColumn._ID + " = ?",
                 new String[] { String.valueOf(myDate.getId()) });
         db.close();
     }
     public int getIdDate(int day, int month, int year){
         SQLiteDatabase db = databaseHandler.getWritableDatabase();
-        String sql =" select * form "+DatabaseHandler.TABLE_MYDATES
-                + "where " + DatabaseHandler.MyDateColumn.KEY_DAY + "=" + day
-                + " and " + DatabaseHandler.MyDateColumn.KEY_MONTH + "=" + month
-                + " and " + DatabaseHandler.MyDateColumn.KEY_YEAR + "=" + year;
+        String sql ="select * from "+ TABLE_MYDATES
+                + " where " + DatabaseHandler.MyDateColumn.KEY_DAY + " = " + day
+                + " and " + DatabaseHandler.MyDateColumn.KEY_MONTH + " = " + month
+                + " and " + DatabaseHandler.MyDateColumn.KEY_YEAR + " = " + year;
         Cursor cursor = db.rawQuery(sql,null);
         MyDate myDate = new MyDate();
         if (cursor.moveToFirst()) {
