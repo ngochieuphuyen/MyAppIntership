@@ -174,4 +174,32 @@ public class MyEventDAO {
         }
         return eventList;
     }
+    public List<MyEvent> getAllDateSearch(String dataSearch){
+        List<MyEvent> eventList = new ArrayList<>();
+        SQLiteDatabase db = databaseHandler.getWritableDatabase();
+        String sql ="select * from "+ TABLE_EVENTS
+                + " where " + DatabaseHandler.EventColumn.KEY_NAME + " like '%" + dataSearch+"%'"
+                +" or "+ DatabaseHandler.EventColumn.KEY_ADDRESS+" like '%"+dataSearch+"%'";
+        Cursor cursor = db.rawQuery(sql,null);
+        MyDateDAO myDateDAO = new MyDateDAO(context);
+        if (cursor.moveToFirst()) {
+            do {
+                MyEvent event = new MyEvent();
+                event.setId(Integer.parseInt(cursor.getString(0)));
+                event.setNameEvent(cursor.getString(1));
+                event.setAddress(cursor.getString(2));
+                event.setStartTime(cursor.getString(3));
+                event.setEndTime(cursor.getString(4));
+                event.setStartDate(myDateDAO.getMyDate(Integer.parseInt(cursor.getString(5))));
+                event.setEndDate(myDateDAO.getMyDate(Integer.parseInt(cursor.getString(6))));
+                event.setGuest(cursor.getString(7));
+                event.setDescription(cursor.getString(8));
+
+
+                // Adding contact to list
+                eventList.add(event);
+            } while (cursor.moveToNext());
+        }
+        return eventList;
+    }
 }

@@ -1,11 +1,14 @@
 package com.example.ngochieu.myappinternship.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,6 +19,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ngochieu.myappinternship.Database.MyDateDAO;
@@ -23,6 +28,7 @@ import com.example.ngochieu.myappinternship.Database.MyEventDAO;
 import com.example.ngochieu.myappinternship.Fragment.FragmentCalenderView;
 import com.example.ngochieu.myappinternship.Fragment.FragmentDay;
 import com.example.ngochieu.myappinternship.Fragment.FragmentMonth;
+import com.example.ngochieu.myappinternship.Fragment.FragmentSearchData;
 import com.example.ngochieu.myappinternship.Fragment.FragmentWeek;
 import com.example.ngochieu.myappinternship.R;
 import com.example.ngochieu.myappinternship.Support.MyConstant;
@@ -131,6 +137,72 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        final Intent intent;
+        switch (item.getItemId()){
+            case R.id.action_settings:
+
+                break;
+            case R.id.action_goto:
+                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                final View picker = getLayoutInflater().inflate(R.layout.dialog_date,null);
+                dialog.setView(picker);
+                dialog.setTitle("Select date");
+                dialog.setPositiveButton("Goto", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatePicker dateStart = (DatePicker) picker.findViewById(R.id.datePicker1);
+                        MyDateDAO myDateDAO = new MyDateDAO(MainActivity.this);
+                        MyDate myDate = myDateDAO.getMyDate(myDateDAO.getIdDate(dateStart.getDayOfMonth(),dateStart.getMonth()+1,dateStart.getYear()));
+                        Intent i = new Intent(MainActivity.this, DateActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("mydate",myDate);
+                        i.putExtra("bundle",bundle);
+                        startActivity(i);
+                    }
+                });
+                dialog.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                      dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                break;
+            case R.id.action_search:
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                final View search = getLayoutInflater().inflate(R.layout.search_data,null);
+                builder.setView(search);
+                builder.setTitle("Search Event");
+                builder.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FragmentSearchData fragmentSearchData = new FragmentSearchData();
+                        EditText editSearchData = (EditText) search.findViewById(R.id.editSearchData);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("datasearch",editSearchData.getText().toString());
+
+                        fragmentSearchData.setArguments(bundle);
+
+                        FragmentManager manager = getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.replace(R.id.Frame1, fragmentSearchData);
+                        transaction.commit();
+                    }
+                });
+                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+
+                break;
+            case R.id.action_about:
+                intent = new Intent(MainActivity.this,AboutActivity.class);
+                startActivity(intent);
+                break;
+        }
 
         if (id == R.id.action_settings) {
             return true;

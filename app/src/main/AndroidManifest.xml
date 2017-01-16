@@ -22,6 +22,7 @@
         <activity android:name=".Activity.AddEventActivity"/>
         <activity android:name=".Activity.DetailEventActivity"/>
         <activity android:name=".Activity.DateActivity"/>
+        <activity android:name=".Activity.AboutActivity"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

@@ -39,4 +39,8 @@
     <string name="Delete">Delete</string>
     <string name="Edit">Edit</string>
     <string name="Close">Close</string>
+    <string name="Version">version 1.0</string>
+    <string name="copyright">Copyright@2017 Phan Ngoc Hieu</string>
+    <string name="icon">Some icons are created by Google</string>
+    <string name="SearchData">search name event or address</string>
 </resources>
