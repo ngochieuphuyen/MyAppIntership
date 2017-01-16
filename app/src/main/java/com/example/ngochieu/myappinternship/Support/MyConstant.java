@@ -5,25 +5,28 @@ package com.example.ngochieu.myappinternship.Support;
  */
 
 public class MyConstant {
-    static final String KEY_SUNDAY= "Sun";
-    static final String KEY_MONDAY = "Mon";
-    static final String KEY_TUESDAY = "Tue";
-    static final String KEY_WEDNESDAY = "Wed";
-    static final String KEY_THUDAY = "Thu";
-    static final String KEY_FRIDAY = "Fri";
-    static final String KEY_SATURDAY = "Sat";
+    public static boolean KEY_INSTAIL = false;
+    public static final String KEY_SUNDAY= "Sun";
+    public static final String KEY_MONDAY = "Mon";
+    public static final String KEY_TUESDAY = "Tue";
+    public static final String KEY_WEDNESDAY = "Wed";
+    public static final String KEY_THUDAY = "Thu";
+    public static final String KEY_FRIDAY = "Fri";
+    public static final String KEY_SATURDAY = "Sat";
 
-    static final String KEY_JANUARY = "January";
-    static final String KEY_FEBRUARY = "February";
-    static final String KEY_MARCH = "March";
-    static final String KEY_APRIL = "April";
-    static final String KEY_MAY = "May";
-    static final String KEY_JUNE = "June";
-    static final String KEY_JULY = "July";
-    static final String KEY_AUGUST = "August";
-    static final String KEY_SEPTEMBER = "September";
-    static final String KEY_OCTOBER = "October";
-    static final String KEY_NOVEMBER = "November";
-    static final String KEY_DEMCEMBER = "December";
+    public static final String[] KEY_MONTH = {"","January","February","March","April","May","June","July","August","September","October","November","December"};
+
+    public static final String KEY_JANUARY = "January";
+    public static final String KEY_FEBRUARY = "February";
+    public static final String KEY_MARCH = "March";
+    public static final String KEY_APRIL = "April";
+    public static final String KEY_MAY = "May";
+    public static final String KEY_JUNE = "June";
+    public static final String KEY_JULY = "July";
+    public static final String KEY_AUGUST = "August";
+    public static final String KEY_SEPTEMBER = "September";
+    public static final String KEY_OCTOBER = "October";
+    public static final String KEY_NOVEMBER = "November";
+    public static final String KEY_DEMCEMBER = "December";
 
 }

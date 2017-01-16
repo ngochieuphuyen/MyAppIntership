@@ -5,13 +5,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import com.example.ngochieu.myappinternship.Support.MyConstant;
+import com.example.ngochieu.myappinternship.Support.MyDate;
+import com.example.ngochieu.myappinternship.Support.Support;
+
 /**
  * Created by NgocHieu on 1/12/2017.
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-
     private static final String DATABASE_NAME = "databaseManager";
     public static final String TABLE_MYDATES = "mydates";
     public static final String TABLE_EVENTS = "events";
@@ -65,6 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_MYDATES_TABLE);
         sqLiteDatabase.execSQL(CREATE_EVENTS_TABLE);
+        MyConstant.KEY_INSTAIL = true;
     }
 
     @Override

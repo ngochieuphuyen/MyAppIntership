@@ -23,7 +23,9 @@ import com.example.ngochieu.myappinternship.Database.MyEventDAO;
 import com.example.ngochieu.myappinternship.Fragment.FragmentCalenderView;
 import com.example.ngochieu.myappinternship.Fragment.FragmentDay;
 import com.example.ngochieu.myappinternship.Fragment.FragmentMonth;
+import com.example.ngochieu.myappinternship.Fragment.FragmentWeek;
 import com.example.ngochieu.myappinternship.R;
+import com.example.ngochieu.myappinternship.Support.MyConstant;
 import com.example.ngochieu.myappinternship.Support.MyDate;
 import com.example.ngochieu.myappinternship.Support.MyEvent;
 import com.example.ngochieu.myappinternship.Support.Support;
@@ -53,13 +55,9 @@ public class MainActivity extends AppCompatActivity
 //        MyDateDAO myDateDAO = new MyDateDAO(this);
 //        int idDate = myDateDAO.getIdDate(10,12,2016);
 //        MyDate myDate = new MyDate(idDate,10,"Sat",12,2016);
-        MyEventDAO myEventDAO = new MyEventDAO(this);
+
 //        myEventDAO.AddEvent(new MyEvent("test","bk","7:00","7:30",myDate,myDate));
 
-        ArrayList<MyEvent> listEvent = (ArrayList<MyEvent>) myEventDAO.getAllEvent();
-        for (int i = 0; i < listEvent.size(); i++) {
-            Log.d(TAG, "onCreate: "+listEvent.get(i).getId()+" : "+listEvent.get(i).getNameEvent());
-        }
 
 //        dao.addMyDate(mydate);
 //        ArrayList<MyDate> listDay = (ArrayList<MyDate>) dao.getAllMyDate();
@@ -113,6 +111,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(MyConstant.KEY_INSTAIL){
+            for (int i = 2015; i < 2018; i++) {
+                for (int j = 1; j < 13; j++) {
+                    Support.addMonth(j,i,MainActivity.this);
+                }
+            }
+            Log.d("12345", "onCreate: da tao csdl");
+            MyConstant.KEY_INSTAIL = false;
+        }
+        MyEventDAO myEventDAO = new MyEventDAO(MainActivity.this);
+        ArrayList<MyEvent> listEvent = (ArrayList<MyEvent>) myEventDAO.getAllEvent();
+        for (int i = 0; i < listEvent.size(); i++) {
+            Log.d("12345", "onCreate: "+listEvent.get(i).getId()+" : "+listEvent.get(i).getNameEvent());
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -147,14 +164,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_Day:
                 fragment = new FragmentDay();
                 transaction.replace(R.id.Frame1,fragment);
-                transaction.replace(R.id.FrameCalender, new FragmentCalenderView());
                 transaction.commit();
                 break;
-//            case R.id.nav_Week:
-//                fragment = new FragmentWeek();
-//                transaction.replace(R.id.content_main,fragment);
-//                transaction.commit();
-//                break;
+            case R.id.nav_Week:
+                fragment = new FragmentWeek();
+                transaction.replace(R.id.Frame1,fragment);
+                transaction.commit();
+                break;
             case R.id.nav_Month:
                 fragment = new FragmentMonth();
                 transaction.replace(R.id.Frame1,fragment);

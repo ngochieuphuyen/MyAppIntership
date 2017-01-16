@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.ngochieu.myappinternship.Database.MyDateDAO;
@@ -31,10 +32,10 @@ import com.example.ngochieu.myappinternship.Support.MyEvent;
 public class AddEventActivity extends AppCompatActivity implements View.OnClickListener {
     EditText editNameEvent;
     EditText editAddress;
-    EditText editStartDate;
-    EditText editEndDate;
-    EditText editStartTime;
-    EditText editEndTime;
+    TextView editStartDate;
+    TextView editEndDate;
+    TextView editStartTime;
+    TextView editEndTime;
     EditText editGuests;
     EditText editDescribe;
     Button btnDone;
@@ -52,13 +53,13 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
         editDescribe = (EditText) findViewById(R.id.editDescribe);
 
 
-        editStartDate = (EditText) findViewById(R.id.editStartDate);
+        editStartDate = (TextView) findViewById(R.id.editStartDate);
         editStartDate.setOnClickListener(this);
-        editEndDate = (EditText) findViewById(R.id.editEndDate);
+        editEndDate = (TextView) findViewById(R.id.editEndDate);
         editEndDate.setOnClickListener(this);
-        editStartTime = (EditText) findViewById(R.id.editStartTime);
+        editStartTime = (TextView) findViewById(R.id.editStartTime);
         editStartTime.setOnClickListener(this);
-        editEndTime = (EditText) findViewById(R.id.editEndTime);
+        editEndTime = (TextView) findViewById(R.id.editEndTime);
         editEndTime.setOnClickListener(this);
 
 

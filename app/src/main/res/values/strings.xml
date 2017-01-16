@@ -28,6 +28,10 @@
     <string name="Describe">Describe</string>
     <string name="StartDate">Start date</string>
     <string name="StartTime">Start time</string>
-    <string name="EndDate">Ens date</string>
+    <string name="EndDate">End date</string>
     <string name="EndTime">End time</string>
+    <string name="Event">Event</string>
+    <string name="Lunar">Lunar</string>
+    <string name="dau_phay">,</string>
+    <string name="SundayFull">Sunday</string>
 </resources>

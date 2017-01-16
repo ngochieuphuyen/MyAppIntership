@@ -1,6 +1,7 @@
 package com.example.ngochieu.myappinternship.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,11 @@ import java.util.List;
 public class AdapterCalenderMonth extends RecyclerView.Adapter<AdapterCalenderMonth.HolderMyDate> {
     Context context;
     List<MyDate> data;
+    MyOnClick myOnClick;
+
+    public void setMyOnClick(MyOnClick myOnClick) {
+        this.myOnClick = myOnClick;
+    }
 
     public AdapterCalenderMonth(Context context, List<MyDate> data) {
         this.context = context;
@@ -37,8 +43,19 @@ public class AdapterCalenderMonth extends RecyclerView.Adapter<AdapterCalenderMo
     public void onBindViewHolder(HolderMyDate holder, int position) {
         MyDate myDate = data.get(position);
         holder.txtDayOfSun.setText(String.valueOf(myDate.getDay()));
-        holder.txtDayOfmoon.setText(String.valueOf(myDate.getLunarDay()));
-
+        if (myDate.getLunarDay() == 1){
+            holder.txtDayOfmoon.setText(String.valueOf(myDate.getLunarDay())+"/"+String.valueOf(myDate.getLunarMonth()));
+        } else {
+            holder.txtDayOfmoon.setText(String.valueOf(myDate.getLunarDay()));
+        }
+        if (myDate.getDayOfWeek().equals("Sun")){
+            holder.txtDayOfmoon.setTextColor(context.getResources().getColor(R.color.RedColor));
+            holder.txtDayOfSun.setTextColor(context.getResources().getColor(R.color.RedColor));
+        }
+        if (myDate.getDayOfWeek().equals("Sat")){
+            holder.txtDayOfmoon.setTextColor(context.getResources().getColor(R.color.GreenColor));
+            holder.txtDayOfSun.setTextColor(context.getResources().getColor(R.color.GreenColor));
+        }
 
     }
 
@@ -56,6 +73,15 @@ public class AdapterCalenderMonth extends RecyclerView.Adapter<AdapterCalenderMo
             txtDayOfSun = (TextView) itemView.findViewById(R.id.txtDayOfSun);
             txtDayOfmoon = (TextView) itemView.findViewById(R.id.txtDayOfMoon);
             itemListMonth = (LinearLayout) itemView.findViewById(R.id.item_list_month);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myOnClick.onClick(data.get(getAdapterPosition()));
+                }
+            });
         }
+    }
+    public interface MyOnClick{
+        void onClick(MyDate myDate);
     }
 }

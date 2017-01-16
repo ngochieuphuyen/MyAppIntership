@@ -165,7 +165,6 @@ public class Lunar {
         int Ngay = Integer.parseInt(lunarDayStr.substring(0,lunarDayStr.indexOf(".")));
         int Thang = Integer.parseInt(lunarMonthStr.substring(0,lunarMonthStr.indexOf(".")));
         int Nam = Integer.parseInt(lunarYearStr.substring(0,lunarYearStr.indexOf(".")));
-        Log.d("123", "convertSolar2Lunar: "+Ngay+"/"+Thang+"/"+Nam);
         ArrayList list = new ArrayList<>();
         list.add(Ngay);list.add(Thang);list.add(Nam);
         return list;
