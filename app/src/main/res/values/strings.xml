@@ -34,4 +34,9 @@
     <string name="Lunar">Lunar</string>
     <string name="dau_phay">,</string>
     <string name="SundayFull">Sunday</string>
+    <string name="Detail">Detail</string>
+    <string name="Clode">Close</string>
+    <string name="Delete">Delete</string>
+    <string name="Edit">Edit</string>
+    <string name="Close">Close</string>
 </resources>

@@ -119,6 +119,73 @@ public class Support {
         int month = calendar.get(Calendar.MONTH)+1;
         int year = calendar.get(Calendar.YEAR);
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int so_ngay = dayOfWeek - 1;
+        MyDateDAO myDateDAO = new MyDateDAO(context);
+
+        // truoc ngay hien tai
+        if (day - so_ngay >0){
+            // o trong thang
+            for (int i = day - so_ngay; i < day; i++) {
+                int id = myDateDAO.getIdDate(i,month,year);
+                listWeek.add(myDateDAO.getMyDate(id));
+                index++;
+            }
+        } else {
+            //lui 1 thang
+            int lastMonth = month -1, lastYear = year;
+            if (month == 1){
+                lastMonth =12; lastYear = year -1;
+            }
+            int max_date_last_month = getMaxDay(lastMonth, lastYear);
+            for (int i = day - so_ngay + max_date_last_month; i <= max_date_last_month ; i++) {
+                int id = myDateDAO.getIdDate(i,month,year);
+                listWeek.add(myDateDAO.getMyDate(id));
+                index++;
+            }
+            for (int i = 1; i < day; i++) {
+                int id = myDateDAO.getIdDate(i,month,year);
+                listWeek.add(myDateDAO.getMyDate(id));
+                index++;
+            }
+
+
+        }
+
+        // ngay hien tai
+        int id = myDateDAO.getIdDate(day,month,year);
+        listWeek.add(myDateDAO.getMyDate(id));
+        index++;
+        // sau ngay hien tai neu co
+        if (index<7){
+            int so_ngay_con_lai = 7 - index;
+            if (so_ngay_con_lai + day >getMaxDay(month, year)){
+                // qua thang tiep
+                int nextMonth, nextYear;
+                if (month == 12){
+                    nextMonth =1;
+                    nextYear = year+1;
+                } else {
+                    nextMonth = month+1;
+                    nextYear = year;
+                }
+                for (int i = day+1; i <= getMaxDay(month, year) ; i++) {
+                    int id_con_lai = myDateDAO.getIdDate(i,month,year);
+                    listWeek.add(myDateDAO.getMyDate(id_con_lai));
+                    so_ngay_con_lai--;
+                }
+                for (int i = 1; i <= so_ngay_con_lai ; i++) {
+                    int id_con_lai = myDateDAO.getIdDate(i,nextMonth,nextYear);
+                    listWeek.add(myDateDAO.getMyDate(id_con_lai));
+                }
+
+            } else {
+                // o trong thang
+                for (int i = 0; i < so_ngay_con_lai; i++) {
+                    int id_con_lai = myDateDAO.getIdDate(day+1+i,month,year);
+                    listWeek.add(myDateDAO.getMyDate(id_con_lai));
+                }
+            }
+        }
 
 
         return listWeek;

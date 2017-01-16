@@ -23,6 +23,11 @@ import java.util.List;
 public class AdapterFragmentWeek extends RecyclerView.Adapter<AdapterFragmentWeek.HolderWeek> {
     Context context;
     List<MyDate> data;
+    MyOnCLick myOnCLick;
+
+    public void setMyOnCLick(MyOnCLick myOnCLick) {
+        this.myOnCLick = myOnCLick;
+    }
 
     public AdapterFragmentWeek(Context context, List<MyDate> data) {
         this.context = context;
@@ -43,13 +48,14 @@ public class AdapterFragmentWeek extends RecyclerView.Adapter<AdapterFragmentWee
         MyEventDAO myEventDAO = new MyEventDAO(context);
         List<MyEvent> listEvent = myEventDAO.getAllDateOfDate(myDate.getId());
         String task ="";
-        for (int i = 0; i <listEvent.size()-1 ; i++) {
-            task.concat(listEvent.get(i).getNameEvent()+", ");
+//        Log.d("12345", "onBindViewHolder: "+listEvent.size());
+        if (listEvent.size() > 0){
+            int i;
+            for ( i = 0; i <listEvent.size()-1 ; i++)
+                task = task.concat(listEvent.get(i).getNameEvent()+", ");
+
+            task = task.concat(listEvent.get(i).getNameEvent());
         }
-        if (listEvent.size()>0){
-            task.concat(listEvent.get(listEvent.size()-1).getNameEvent()+", ");
-        }
-        Log.d("12345", "onBindViewHolder: "+task);
         holder.txtTask.setText(task);
     }
 
@@ -67,6 +73,15 @@ public class AdapterFragmentWeek extends RecyclerView.Adapter<AdapterFragmentWee
             txtDayofWeek = (TextView) itemView.findViewById(R.id.txtDayofWeek);
             txtDayAndMonth = (TextView) itemView.findViewById(R.id.txtDayAndMonth);
             txtTask = (TextView) itemView.findViewById(R.id.txtTask);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myOnCLick.onClick(data.get(getAdapterPosition()));
+                }
+            });
         }
+    }
+    public interface MyOnCLick{
+        void onClick(MyDate myDate);
     }
 }

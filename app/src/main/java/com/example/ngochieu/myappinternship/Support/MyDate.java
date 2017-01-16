@@ -1,12 +1,15 @@
 package com.example.ngochieu.myappinternship.Support;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by NgocHieu on 1/7/2017.
  */
 
-public class MyDate {
+public class MyDate implements Parcelable{
     int id;
     int day;
     String  dayOfWeek;
@@ -16,7 +19,10 @@ public class MyDate {
     int lunarMonth;
     int lunarYear;
 
-    public MyDate() {
+    public MyDate(){
+    }
+    public String toStringSun(){
+        return (day + "/" + month + "/" + year);
     }
 
     public MyDate(int id, int day, int month, int lunarDay, int lunarMonth, String dayOfWeek) {
@@ -86,6 +92,30 @@ public class MyDate {
 
 
     }
+
+    protected MyDate(Parcel in) {
+        id = in.readInt();
+        day = in.readInt();
+        dayOfWeek = in.readString();
+        month = in.readInt();
+        year = in.readInt();
+        lunarDay = in.readInt();
+        lunarMonth = in.readInt();
+        lunarYear = in.readInt();
+    }
+
+    public static final Creator<MyDate> CREATOR = new Creator<MyDate>() {
+        @Override
+        public MyDate createFromParcel(Parcel in) {
+            return new MyDate(in);
+        }
+
+        @Override
+        public MyDate[] newArray(int size) {
+            return new MyDate[size];
+        }
+    };
+
     private void autoSetLunar(int day, int month, int year){
         Lunar lunar = new Lunar();
         ArrayList list = lunar.convertSolar2Lunar(day, month, year);
@@ -158,5 +188,21 @@ public class MyDate {
         this.lunarYear = lunarYear;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(day);
+        dest.writeString(dayOfWeek);
+        dest.writeInt(month);
+        dest.writeInt(year);
+        dest.writeInt(lunarDay);
+        dest.writeInt(lunarMonth);
+        dest.writeInt(lunarYear);
+    }
 }
 

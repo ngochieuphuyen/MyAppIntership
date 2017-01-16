@@ -1,10 +1,13 @@
 package com.example.ngochieu.myappinternship.Support;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by NgocHieu on 1/8/2017.
  */
 
-public class MyEvent {
+public class MyEvent implements Parcelable {
     int id;
     String nameEvent;
     String address;
@@ -67,6 +70,28 @@ public class MyEvent {
         this.endDate = endDate;
         this.description = description;
     }
+
+    protected MyEvent(Parcel in) {
+        id = in.readInt();
+        nameEvent = in.readString();
+        address = in.readString();
+        startTime = in.readString();
+        endTime = in.readString();
+        guest = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<MyEvent> CREATOR = new Creator<MyEvent>() {
+        @Override
+        public MyEvent createFromParcel(Parcel in) {
+            return new MyEvent(in);
+        }
+
+        @Override
+        public MyEvent[] newArray(int size) {
+            return new MyEvent[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -138,5 +163,21 @@ public class MyEvent {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nameEvent);
+        dest.writeString(address);
+        dest.writeString(startTime);
+        dest.writeString(endTime);
+        dest.writeString(guest);
+        dest.writeString(description);
     }
 }

@@ -49,6 +49,16 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if(MyConstant.KEY_INSTAIL){
+            for (int i = 2015; i < 2018; i++) {
+                for (int j = 1; j < 13; j++) {
+                    Support.addMonth(j,i,MainActivity.this);
+                }
+            }
+            Log.d("12345", "onCreate: da tao csdl");
+            MyConstant.KEY_INSTAIL = false;
+        }
+
 //        Support.addMonth(12,2016,MainActivity.this);
 //        MyDate mydate = new MyDate(12,"Thu",1,2017);
 
@@ -93,10 +103,6 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.Frame1,fragmentMonth);
         transaction.commit();
 
-
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -113,20 +119,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if(MyConstant.KEY_INSTAIL){
-            for (int i = 2015; i < 2018; i++) {
-                for (int j = 1; j < 13; j++) {
-                    Support.addMonth(j,i,MainActivity.this);
-                }
-            }
-            Log.d("12345", "onCreate: da tao csdl");
-            MyConstant.KEY_INSTAIL = false;
-        }
-        MyEventDAO myEventDAO = new MyEventDAO(MainActivity.this);
-        ArrayList<MyEvent> listEvent = (ArrayList<MyEvent>) myEventDAO.getAllEvent();
-        for (int i = 0; i < listEvent.size(); i++) {
-            Log.d("12345", "onCreate: "+listEvent.get(i).getId()+" : "+listEvent.get(i).getNameEvent());
-        }
     }
 
     @Override
@@ -138,12 +130,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -158,23 +146,18 @@ public class MainActivity extends AppCompatActivity
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Fragment fragment;
-        Toast.makeText(MainActivity.this,"show fragment",Toast.LENGTH_LONG);
-
         switch (item.getItemId()){
             case R.id.nav_Day:
                 fragment = new FragmentDay();
                 transaction.replace(R.id.Frame1,fragment);
-                transaction.commit();
                 break;
             case R.id.nav_Week:
                 fragment = new FragmentWeek();
                 transaction.replace(R.id.Frame1,fragment);
-                transaction.commit();
                 break;
             case R.id.nav_Month:
                 fragment = new FragmentMonth();
                 transaction.replace(R.id.Frame1,fragment);
-                transaction.commit();
                 break;
 
             case R.id.nav_VietNam:
@@ -184,7 +167,8 @@ public class MainActivity extends AppCompatActivity
 
                 break;
         }
-
+        transaction.addToBackStack(null);
+        transaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -1,6 +1,7 @@
 package com.example.ngochieu.myappinternship.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,10 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ngochieu.myappinternship.Activity.DateActivity;
 import com.example.ngochieu.myappinternship.Adapter.AdapterFragmentWeek;
 import com.example.ngochieu.myappinternship.Database.MyDateDAO;
+import com.example.ngochieu.myappinternship.Database.MyEventDAO;
 import com.example.ngochieu.myappinternship.R;
 import com.example.ngochieu.myappinternship.Support.MyDate;
+import com.example.ngochieu.myappinternship.Support.MyEvent;
+import com.example.ngochieu.myappinternship.Support.Support;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +29,8 @@ import java.util.List;
 
 public class FragmentWeek extends Fragment {
     Context context;
-
+    RecyclerView recyclerView;
+    AdapterFragmentWeek adapter;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -36,17 +42,26 @@ public class FragmentWeek extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_week, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list_week);
+        recyclerView = (RecyclerView) view.findViewById(R.id.list_week);
         recyclerView.setLayoutManager( new LinearLayoutManager(context));
-        List<MyDate> data = new ArrayList<>();
-        MyDateDAO myDateDAO = new MyDateDAO(context);
-        for (int i = 8; i < 15; i++) {
-            int id_date =myDateDAO.getIdDate(i,1,2017);
-            data.add(myDateDAO.getMyDate(id_date));
-        }
-        AdapterFragmentWeek adapter = new AdapterFragmentWeek(context,data);
-        recyclerView.setAdapter(adapter);
-
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        List<MyDate> data = Support.getListDateWeek(context);
+        adapter = new AdapterFragmentWeek(context,data);
+        recyclerView.setAdapter(adapter);
+        adapter.setMyOnCLick(new AdapterFragmentWeek.MyOnCLick() {
+            @Override
+            public void onClick(MyDate myDate) {
+                Intent intent = new Intent(context, DateActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("mydate", myDate);
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
     }
 }

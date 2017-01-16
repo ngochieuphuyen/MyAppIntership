@@ -45,6 +45,7 @@ public class AdapterEventList extends RecyclerView.Adapter<AdapterEventList.Hold
         MyDate myDate = myEvent.getStartDate();
         holder.txtStartDate.setText(myDate.getDay()+"/"+myDate.getMonth()+" : "+myDate.getDayOfWeek());
         holder.txtTime.setText(myEvent.getStartTime()+" - "+myEvent.getEndTime());
+        holder.txtStartTime.setText(myEvent.getStartTime());
     }
 
     @Override

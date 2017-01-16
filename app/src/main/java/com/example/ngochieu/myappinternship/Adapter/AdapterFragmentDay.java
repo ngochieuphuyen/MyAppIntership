@@ -19,6 +19,11 @@ import java.util.List;
 public class AdapterFragmentDay extends RecyclerView.Adapter<AdapterFragmentDay.HolderMyEvent> {
     Context context;
     List<MyEvent> data;
+    MyOnClick myOnClick;
+
+    public void setMyOnClick(MyOnClick myOnClick) {
+        this.myOnClick = myOnClick;
+    }
 
     public AdapterFragmentDay(Context context, List<MyEvent> data) {
         this.context = context;
@@ -53,6 +58,15 @@ public class AdapterFragmentDay extends RecyclerView.Adapter<AdapterFragmentDay.
             txtStart = (TextView) itemView.findViewById(R.id.txtStart);
             txtStartAndEnd = (TextView) itemView.findViewById(R.id.txtStartAndEnd);
             txtNameEvent = (TextView) itemView.findViewById(R.id.txtNameEvent);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myOnClick.onClick(data.get(getAdapterPosition()));
+                }
+            });
         }
+    }
+    public interface MyOnClick{
+        void onClick(MyEvent myEvent);
     }
 }
